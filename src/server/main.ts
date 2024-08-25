@@ -1,13 +1,14 @@
 import express from "express";
 import ViteExpress from "vite-express";
+import bodyParser from "body-parser";
 
 const app = express();
-app.use(express.json());
+
+app.use(bodyParser.json());
 
 // BFHL POST endpoint
 app.post("/bfhl", (req, res) => {
   const { data } = req.body;
-  console.log(data);
 
   if (!data || !Array.isArray(data)) {
     return res
@@ -38,10 +39,6 @@ app.post("/bfhl", (req, res) => {
 // BFHL GET endpoint
 app.get("/bfhl", (_, res) => {
   res.json({ operation_code: 1 });
-});
-
-app.get("/hello", (_, res) => {
-  res.send("Hello Vite + React + TypeScript!");
 });
 
 ViteExpress.listen(app, Number(process.env.PORT) || 4000, () =>
