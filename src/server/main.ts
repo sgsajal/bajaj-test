@@ -7,6 +7,7 @@ app.use(express.json());
 // BFHL POST endpoint
 app.post("/bfhl", (req, res) => {
   const { data } = req.body;
+  console.log(data);
 
   if (!data || !Array.isArray(data)) {
     return res
@@ -43,6 +44,6 @@ app.get("/hello", (_, res) => {
   res.send("Hello Vite + React + TypeScript!");
 });
 
-ViteExpress.listen(app, 3000, () =>
-  console.log("Server is listening on port 3000...")
+ViteExpress.listen(app, Number(process.env.PORT) || 4000, () =>
+  console.log(`Server is listening on port ${process.env.PORT || 4000}...`)
 );

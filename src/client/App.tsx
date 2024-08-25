@@ -82,12 +82,13 @@ export default function App() {
   const [inp, setInp] = useState("");
   const [serverRes, setServerRes] = useState<ServerResult | null>(null);
   const [tags, setTags] = useState<string[]>([]);
+  console.log(inp);
 
   async function handleSubmit(ev: FormEvent<HTMLFormElement>) {
     ev.preventDefault();
 
     const res = await fetch("/bfhl", {
-      body: inp,
+      body: JSON.parse(inp),
       method: "POST",
     });
     const output = await res.json();
